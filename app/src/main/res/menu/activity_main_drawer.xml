@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_temperatur"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_temperatur" />
+        <item
+            android:id="@+id/nav_pH"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_pH" />
+        <item
+            android:id="@+id/nav_waterlevel"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_waterlevel" />
+    </group>
+</menu>

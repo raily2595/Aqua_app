@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.pH.PHFragment">
+
+    <NumberPicker
+        android:id="@+id/phpicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/phpicker2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/graph" />
+
+    <NumberPicker
+        android:id="@+id/phpicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/phpicker3"
+        app:layout_constraintStart_toEndOf="@id/phpicker1"
+        app:layout_constraintTop_toBottomOf="@id/graph" />
+
+    <NumberPicker
+        android:id="@+id/phpicker3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/phpicker2"
+        app:layout_constraintEnd_toStartOf="@id/phpicker4"
+        app:layout_constraintTop_toBottomOf="@id/graph"/>
+
+    <NumberPicker
+        android:id="@+id/phpicker4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/phpicker3"
+        app:layout_constraintTop_toBottomOf="@id/graph"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/phviser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toTopOf="@id/graph"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/graph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:src="@drawable/graf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phviser"
+        app:layout_constraintBottom_toTopOf="@id/phpicker1"/>
+
+    <TextView
+        android:id="@+id/minviser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/min"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/phpicker1"
+        app:layout_constraintStart_toStartOf="@id/phpicker1"
+        app:layout_constraintEnd_toEndOf="@id/phpicker1"/>
+
+    <TextView
+        android:id="@+id/maxviser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/max"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/phpicker3"
+        app:layout_constraintEnd_toEndOf="@id/phpicker3"
+        app:layout_constraintStart_toStartOf="@id/phpicker3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

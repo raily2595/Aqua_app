@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.aqua.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_temperatur"
+        android:name="com.example.aqua.ui.temperatur.TemperaturFragment"
+        android:label="@string/menu_temperatur"
+        tools:layout="@layout/fragment_temperatur" />
+
+    <fragment
+        android:id="@+id/nav_pH"
+        android:name="com.example.aqua.ui.pH.PHFragment"
+        android:label="@string/menu_pH"
+        tools:layout="@layout/fragment_ph" />
+
+    <fragment
+        android:id="@+id/nav_waterlevel"
+        android:name="com.example.aqua.ui.waterlevel.WaterlevelFragment"
+        android:label="@string/menu_waterlevel"
+        tools:layout="@layout/fragment_waterlevel" />
+</navigation>
