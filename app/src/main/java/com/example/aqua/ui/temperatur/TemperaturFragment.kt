@@ -1,6 +1,7 @@
 package com.example.aqua.ui.temperatur
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class TemperaturFragment : Fragment() {
             val text = it.toString() + "ºC"
             textView.text = text
         })
+
         val picker1: NumberPicker = root.findViewById(R.id.temppicker1)
         val picker2: NumberPicker = root.findViewById(R.id.temppicker2)
         picker1.maxValue = 31
@@ -40,11 +42,21 @@ class TemperaturFragment : Fragment() {
         picker1.setOnValueChangedListener(OnValueChangeListener { picker, oldVal, newVal ->
             picker2.minValue = newVal
             sharedViewModel.sendMinMax(picker1.value, picker2.value)
-        });
+        })
 
         picker2.setOnValueChangedListener(OnValueChangeListener { picker, oldVal, newVal ->
             sharedViewModel.sendMinMax(picker1.value, picker2.value)
-        });
+        })
+
+        sharedViewModel.mintemp.observe(viewLifecycleOwner, Observer {
+            picker1.value = it
+            Log.d("kake", "polse")
+        })
+
+        sharedViewModel.maxtemp.observe(viewLifecycleOwner, Observer {
+            picker2.value = it
+            Log.d("kake", "polse")
+        })
 
         return root;
     }

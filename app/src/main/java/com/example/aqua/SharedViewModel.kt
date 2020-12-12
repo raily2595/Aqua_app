@@ -46,19 +46,34 @@ class SharedViewModel : ViewModel() {
     fun sendMinMax(minm: Int, maxm: Int ) {
         mintemp.value = minm
         maxtemp.value = maxm
-        changeQualityTemp()
+        changeQuality()
     }
-    fun changeQualityTemp() {
+    fun changeQuality() {
         if ((currenttemperatur.value!! < mintemp.value!!)||(currenttemperatur.value!! > maxtemp.value!!)){
             if (tempbool.value == false){
                 tempbool.value = true
-                _quality.value = quality.value?.plus(1)
             }
         } else {
             if (tempbool.value == true){
                 tempbool.value = false
-                _quality.value = quality.value?.minus(1)
             }
+        }
+
+        if ((currentph.value!! < minph.value!!)||(currentph.value!! > maxph.value!!)){
+            if (phbool.value == false){
+                phbool.value = true
+            }
+        } else {
+            if (phbool.value == true){
+                phbool.value = false
+            }
+        }
+        if ((phbool.value == false) &&(tempbool.value == false)){
+            _quality.value = 1
+        } else if ((phbool.value == true) &&(tempbool.value == true)){
+            _quality.value = 3
+        } else {
+            _quality.value = 2
         }
     }
 
@@ -67,26 +82,18 @@ class SharedViewModel : ViewModel() {
     fun sendMinMaxpH(minph1 : Int, minph2: Int, maxph1 : Int, maxph2 : Int){
         minph.value = minph1.toFloat() + (minph2.toFloat()/10)
         maxph.value = maxph1.toFloat() + (maxph2.toFloat()/10)
-        changeQualityPh()
+        changeQuality()
     }
 
-    fun changeQualityPh() {
-        if ((currentph.value!! < minph.value!!)||(currentph.value!! > maxph.value!!)){
-            if (phbool.value == false){
-                phbool.value = true
-                _quality.value = quality.value?.plus(1)
-            }
-        } else {
-            if (phbool.value == true){
-                _quality.value = quality.value?.minus(1)
-                phbool.value = false
-            }
-        }
+    fun setAllValue(temp: Int, qual: Int, ph: Float, water: Int, alg: Float, mintem: Int, maxtem: Int, miph: Float, maph: Float){
+        _currenttemperatur.value = temp
+        _quality.value = qual
+        _currentph.value = ph
+        _waterlevel.value = water
+        _algea.value = alg
+        mintemp.value = mintem
+        maxtemp.value = maxtem
+        minph.value = miph
+        maxph.value = maph
     }
-
-
-
-
-
-
 }

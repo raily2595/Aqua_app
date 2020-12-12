@@ -45,20 +45,34 @@ class PHFragment : Fragment() {
         picker1.setOnValueChangedListener(NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
             picker3.minValue = newVal
             sharedViewModel.sendMinMaxpH(picker1.value, picker2.value, picker3.value, picker4.value)
-        });
+        })
 
         picker2.setOnValueChangedListener(NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
             picker4.minValue = newVal
             sharedViewModel.sendMinMaxpH(picker1.value, picker2.value, picker3.value, picker4.value)
-        });
+        })
 
         picker3.setOnValueChangedListener(NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
             sharedViewModel.sendMinMaxpH(picker1.value, picker2.value, picker3.value, picker4.value)
-        });
+        })
 
         picker4.setOnValueChangedListener(NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
             sharedViewModel.sendMinMaxpH(picker1.value, picker2.value, picker3.value, picker4.value)
-        });
+        })
+
+        sharedViewModel.minph.observe(viewLifecycleOwner, Observer {
+            val pick = it - it.toInt()
+            picker2.value = (pick*10).toInt()
+            picker1.value = it.toInt()
+        })
+
+        sharedViewModel.maxph.observe(viewLifecycleOwner, Observer {
+            val pick = it - it.toInt()
+            picker4.value = (pick*10).toInt()
+            picker3.value = it.toInt()
+        })
+
+
 
         return root
     }
