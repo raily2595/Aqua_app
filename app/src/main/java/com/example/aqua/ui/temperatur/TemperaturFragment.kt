@@ -24,8 +24,9 @@ class TemperaturFragment : Fragment() {
         val sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_temperatur, container, false)
         val textView: TextView = root.findViewById(R.id.tempviser)
-        sharedViewModel.temperaturstring.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        sharedViewModel.currenttemperatur.observe(viewLifecycleOwner, Observer {
+            val text = it.toString() + "ºC"
+            textView.text = text
         })
         val picker1: NumberPicker = root.findViewById(R.id.temppicker1)
         val picker2: NumberPicker = root.findViewById(R.id.temppicker2)

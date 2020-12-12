@@ -21,8 +21,9 @@ class WaterlevelFragment : Fragment() {
         val sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_waterlevel, container, false)
         val textView: TextView = root.findViewById(R.id.waterlevelviser)
-        sharedViewModel.waterlevelstring.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        sharedViewModel.waterlevel.observe(viewLifecycleOwner, Observer {
+            val text = it.toString() + "cm"
+            textView.text = text
         })
         return root
     }

@@ -1,10 +1,13 @@
 package com.example.aqua
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -38,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        observeModel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -50,5 +55,18 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    fun observeModel() {
+        val sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+
+        sharedViewModel.quality.observeForever(Observer {
+            Log.d("qualitet!! ",it.toString())
+        })
+
+        sharedViewModel.currentph.observeForever(Observer {
+            Log.d("ph!! ",it.toString())
+        })
+    }
+
 
 }

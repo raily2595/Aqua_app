@@ -1,6 +1,5 @@
 package com.example.aqua
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,15 +14,10 @@ class SharedViewModel : ViewModel() {
         value = false
     }
 
-    private val _temperaturstring = MutableLiveData<String>().apply {
-        value = "ºC"
+    private val _waterlevel = MutableLiveData<Int>().apply {
+        value = -3
     }
-    val temperaturstring: LiveData<String> = _temperaturstring
-
-    private val _waterlevelstring = MutableLiveData<String>().apply {
-        value = "-3 cm"
-    }
-    val waterlevelstring: LiveData<String> = _waterlevelstring
+    val waterlevel: LiveData<Int> = _waterlevel
 
     private val _currentph = MutableLiveData<Float>().apply {
         value = 7.0f
@@ -66,7 +60,6 @@ class SharedViewModel : ViewModel() {
                 _quality.value = quality.value?.minus(1)
             }
         }
-        Log.d("qualitet",_quality.value.toString())
     }
 
     val minph = MutableLiveData<Float>()
