@@ -26,7 +26,7 @@ class SharedViewModel : ViewModel() {
     val waterlevelstring: LiveData<String> = _waterlevelstring
 
     private val _currentph = MutableLiveData<Float>().apply {
-        value = 5.0f
+        value = 7.0f
     }
     val currentph: LiveData<Float> = _currentph
 
