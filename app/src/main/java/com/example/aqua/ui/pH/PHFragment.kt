@@ -25,8 +25,8 @@ class PHFragment : Fragment() {
             ViewModelProviders.of(this).get(SharedViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_ph, container, false)
         val textView: TextView = root.findViewById(R.id.phviser)
-        sharedViewModel.pHstring.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        sharedViewModel.currentph.observe(viewLifecycleOwner, Observer {
+            textView.text = it.toString()
         })
         val picker1: NumberPicker = root.findViewById(R.id.phpicker1)
         val picker2: NumberPicker = root.findViewById(R.id.phpicker2)
@@ -44,6 +44,15 @@ class PHFragment : Fragment() {
         picker4.maxValue = picker2.maxValue
         picker4.minValue = picker2.minValue
         picker4.value = picker2.value
+
+        picker1.setOnValueChangedListener(NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
+            picker3.minValue = newVal
+        });
+
+        picker2.setOnValueChangedListener(NumberPicker.OnValueChangeListener { picker, oldVal, newVal ->
+            picker4.minValue = newVal
+        });
+
         return root
     }
 }

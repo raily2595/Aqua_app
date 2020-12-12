@@ -31,9 +31,9 @@ class HomeFragment : Fragment() {
 
         sharedViewModel.quality.observe(viewLifecycleOwner, Observer {
             when(it) {
-                1  -> root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red))
+                1  -> root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.aqua))
                 2  -> root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.yellow))
-                3  -> root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.aqua))
+                3  -> root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red))
             }
         })
 

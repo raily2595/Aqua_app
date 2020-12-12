@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
+import android.widget.NumberPicker.OnValueChangeListener
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,14 +13,15 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.aqua.R
 import com.example.aqua.SharedViewModel
 
+
 class TemperaturFragment : Fragment() {
 
     private lateinit var sharedViewModel: SharedViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         sharedViewModel =
                 ViewModelProviders.of(this).get(SharedViewModel::class.java)
@@ -36,6 +38,16 @@ class TemperaturFragment : Fragment() {
         picker2.maxValue = picker1.maxValue
         picker2.minValue = picker1.minValue
         picker2.value = picker1.value
-        return root
+
+        picker1.setOnValueChangedListener(OnValueChangeListener { picker, oldVal, newVal ->
+            picker2.minValue = newVal
+            sharedViewModel.sendMinMax(picker1.value, picker2.value)
+        });
+
+        picker2.setOnValueChangedListener(OnValueChangeListener { picker, oldVal, newVal ->
+            sharedViewModel.sendMinMax(picker1.value, picker2.value)
+        });
+
+        return root;
     }
 }
