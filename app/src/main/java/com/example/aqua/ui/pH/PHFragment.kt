@@ -11,6 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.aqua.R
 import com.example.aqua.SharedViewModel
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+
 
 class PHFragment : Fragment() {
 
@@ -25,6 +31,40 @@ class PHFragment : Fragment() {
         sharedViewModel.currentph.observe(viewLifecycleOwner, Observer {
             textView.text = it.toString()
         })
+
+        val graph: LineChart = root.findViewById(R.id.graph)
+        val values: ArrayList<Entry> = ArrayList()
+        values.add(Entry(0.0f, 5.7f))
+        values.add(Entry(1.0f, 5.8f))
+        values.add(Entry(2.0f, 5.9f))
+        values.add(Entry(3.0f, 6.0f))
+        values.add(Entry(4.0f, 5.9f))
+        values.add(Entry(5.0f, 6.0f))
+        values.add(Entry(6.0f, 6.1f))
+        values.add(Entry(7.0f, 6.2f))
+        values.add(Entry(8.0f, 6.3f))
+        values.add(Entry(9.0f, 6.2f))
+        val set1 = LineDataSet(values, "DataSet")
+        val dataSets: ArrayList<ILineDataSet> = ArrayList()
+        dataSets.add(set1)
+        val data = LineData(dataSets)
+        graph.data = data
+        graph.animateX(3000);
+        graph.description.isEnabled = false;
+        graph.legend.isEnabled = false;
+        graph.isDragEnabled = true;
+        graph.setScaleEnabled(true);
+        graph.axisRight.isEnabled = false;
+        set1.lineWidth = 3f;
+        val yAxis = graph.axisLeft;
+        yAxis.axisMaximum = 14f;
+        yAxis.axisMinimum = 0f;
+        var i = 10f
+        sharedViewModel.currentph.observe(viewLifecycleOwner, Observer {
+            graph.data.getDataSetByIndex(0).addEntry(Entry(i, it))
+            i++
+        })
+
         val picker1: NumberPicker = root.findViewById(R.id.phpicker1)
         val picker2: NumberPicker = root.findViewById(R.id.phpicker2)
         val picker3: NumberPicker = root.findViewById(R.id.phpicker3)
@@ -62,13 +102,13 @@ class PHFragment : Fragment() {
 
         sharedViewModel.minph.observe(viewLifecycleOwner, Observer {
             val pick = it - it.toInt()
-            picker2.value = (pick*10).toInt()
+            picker2.value = (pick * 10).toInt()
             picker1.value = it.toInt()
         })
 
         sharedViewModel.maxph.observe(viewLifecycleOwner, Observer {
             val pick = it - it.toInt()
-            picker4.value = (pick*10).toInt()
+            picker4.value = (pick * 10).toInt()
             picker3.value = it.toInt()
         })
 

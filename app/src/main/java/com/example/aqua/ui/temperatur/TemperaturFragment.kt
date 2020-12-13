@@ -13,6 +13,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.aqua.R
 import com.example.aqua.SharedViewModel
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 
 
 class TemperaturFragment : Fragment() {
@@ -28,6 +33,39 @@ class TemperaturFragment : Fragment() {
         sharedViewModel.currenttemperatur.observe(viewLifecycleOwner, Observer {
             val text = it.toString() + "ºC"
             textView.text = text
+        })
+
+        val graph: LineChart = root.findViewById(R.id.graph)
+        val values: ArrayList<Entry> = ArrayList()
+        values.add(Entry(0.0f, 23f))
+        values.add(Entry(1.0f, 23f))
+        values.add(Entry(2.0f, 24f))
+        values.add(Entry(3.0f, 24f))
+        values.add(Entry(4.0f, 23f))
+        values.add(Entry(5.0f, 22f))
+        values.add(Entry(6.0f, 23f))
+        values.add(Entry(7.0f, 24f))
+        values.add(Entry(8.0f, 22f))
+        values.add(Entry(9.0f, 23f))
+        val set1 = LineDataSet(values, "DataSet")
+        val dataSets: ArrayList<ILineDataSet> = ArrayList()
+        dataSets.add(set1)
+        val data = LineData(dataSets)
+        graph.data = data
+        graph.animateX(3000);
+        graph.description.isEnabled = false;
+        graph.legend.isEnabled = false;
+        graph.isDragEnabled = true;
+        graph.setScaleEnabled(true);
+        graph.axisRight.isEnabled = false;
+        set1.lineWidth = 3f;
+        val yAxis = graph.axisLeft;
+        yAxis.axisMaximum = 30f;
+        yAxis.axisMinimum = 15f;
+        var i = 10f
+        sharedViewModel.currentph.observe(viewLifecycleOwner, Observer {
+            graph.data.getDataSetByIndex(0).addEntry(Entry(i, it))
+            i++
         })
 
         val picker1: NumberPicker = root.findViewById(R.id.temppicker1)
