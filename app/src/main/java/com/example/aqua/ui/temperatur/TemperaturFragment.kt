@@ -65,6 +65,7 @@ class TemperaturFragment : Fragment() {
         var i = 10f
         sharedViewModel.currentph.observe(viewLifecycleOwner, Observer {
             graph.data.getDataSetByIndex(0).addEntry(Entry(i, it))
+            graph.xAxis.calculate((i-10).toFloat(), i.toFloat())
             i++
         })
 

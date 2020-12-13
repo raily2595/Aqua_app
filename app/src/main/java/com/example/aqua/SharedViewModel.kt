@@ -43,7 +43,7 @@ class SharedViewModel : ViewModel() {
 
     val mintemp = MutableLiveData<Int>()
     val maxtemp = MutableLiveData<Int>()
-    fun sendMinMax(minm: Int, maxm: Int ) {
+    fun sendMinMax(minm: Int, maxm: Int) {
         mintemp.value = minm
         maxtemp.value = maxm
         changeQuality()
@@ -79,13 +79,23 @@ class SharedViewModel : ViewModel() {
 
     val minph = MutableLiveData<Float>()
     val maxph = MutableLiveData<Float>()
-    fun sendMinMaxpH(minph1 : Int, minph2: Int, maxph1 : Int, maxph2 : Int){
+    fun sendMinMaxpH(minph1: Int, minph2: Int, maxph1: Int, maxph2: Int){
         minph.value = minph1.toFloat() + (minph2.toFloat()/10)
         maxph.value = maxph1.toFloat() + (maxph2.toFloat()/10)
         changeQuality()
     }
 
-    fun setAllValue(temp: Int, qual: Int, ph: Float, water: Int, alg: Float, mintem: Int, maxtem: Int, miph: Float, maph: Float){
+    fun setAllValue(
+        temp: Int,
+        qual: Int,
+        ph: Float,
+        water: Int,
+        alg: Float,
+        mintem: Int,
+        maxtem: Int,
+        miph: Float,
+        maph: Float
+    ){
         _currenttemperatur.value = temp
         _quality.value = qual
         _currentph.value = ph
@@ -95,5 +105,14 @@ class SharedViewModel : ViewModel() {
         maxtemp.value = maxtem
         minph.value = miph
         maxph.value = maph
+    }
+
+    fun getSuperString(superstring: String){
+        val separated: List<String> = superstring.split(";")
+        _currenttemperatur.value = separated[0].toInt()
+        _currentph.value = separated[1].toFloat()
+        _waterlevel.value = separated[2].toInt()
+        _algea.value = separated[3].toFloat()
+        changeQuality()
     }
 }

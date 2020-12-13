@@ -28,4 +28,10 @@
         android:name="com.example.aqua.ui.waterlevel.WaterlevelFragment"
         android:label="@string/menu_waterlevel"
         tools:layout="@layout/fragment_waterlevel" />
+
+    <fragment
+        android:id="@+id/nav_test"
+        android:name="com.example.aqua.ui.test.TestFragment"
+        android:label="@string/menu_test"
+        tools:layout="@layout/fragment_test" />
 </navigation>

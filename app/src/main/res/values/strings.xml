@@ -11,6 +11,10 @@
     <string name="menu_temperatur">Temperatur</string>
     <string name="menu_pH">PH</string>
     <string name="menu_waterlevel">Waterlevel</string>
+    <string name="menu_test">Test</string>
     <string name="min">Min</string>
     <string name="max">Max</string>
+    <string name="button">Button</string>
+    <string name="channel_name">noti</string>
+    <string name="channel_description">notehelp</string>
 </resources>
