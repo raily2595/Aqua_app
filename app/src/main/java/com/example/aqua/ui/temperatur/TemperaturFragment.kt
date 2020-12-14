@@ -47,6 +47,8 @@ class TemperaturFragment : Fragment() {
         values.add(Entry(7.0f, 24f))
         values.add(Entry(8.0f, 22f))
         values.add(Entry(9.0f, 23f))
+        values.add(Entry(10f,24f))
+        values.add(Entry(11f,18f))
         val set1 = LineDataSet(values, "DataSet")
         val dataSets: ArrayList<ILineDataSet> = ArrayList()
         dataSets.add(set1)
@@ -61,11 +63,10 @@ class TemperaturFragment : Fragment() {
         set1.lineWidth = 3f;
         val yAxis = graph.axisLeft;
         yAxis.axisMaximum = 30f;
-        yAxis.axisMinimum = 15f;
-        var i = 10f
+        yAxis.axisMinimum = 10f;
+        var i = 11f
         sharedViewModel.currentph.observe(viewLifecycleOwner, Observer {
             graph.data.getDataSetByIndex(0).addEntry(Entry(i, it))
-            graph.xAxis.calculate((i-10).toFloat(), i.toFloat())
             i++
         })
 
